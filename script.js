@@ -49,9 +49,13 @@ async function getWeather(city){
  })
 
 
+ // for current location of user 
  function getCurrentLocation(){
     if(navigator.geolocation){
         navigator.geolocation.getCurrentPosition(showCurrentPosition);
+    }
+    else{
+        alert("Geolocation is not supported by this browser.");
     }
  }
 
@@ -59,7 +63,7 @@ async function getWeather(city){
 
                 let lat = position.coords.latitude;
                 let lon = position.coords.longitude;
-                //console.log(lat,lon);
+                console.log(lat,lon);
                 
                 
 
@@ -67,7 +71,7 @@ async function getWeather(city){
                 var data = await response.json();
                 
                 console.log(data);
-                
+
                 document.querySelector(".city").innerHTML = `${data.name}` ;
                 document.querySelector(".temp").innerHTML = `${Math.round(data.main.temp)}°c`;
                 document.querySelector(".humidity").innerHTML = `${data.main.humidity}%`;
